@@ -1,0 +1,24 @@
+{% extends "address_book/base.html" %}
+
+{% block title %}Add or Edit an Entry{% endblock %}
+
+{% block content %}
+<a href="{% url address_book.views.index %}">Back to the homepage</a>
+<hr/>
+<h1>Add or edit an Address Entry</h1>
+
+{% if form.errors %}
+<p style="color: red;">
+  Please correct the error{{ form.errors|pluralize }} below.
+</p>
+{% endif %}
+
+<form action="{% url address_book.views.edit %}" method="post">
+  <table style="text-align:left">
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="save" />
+  {% csrf_token %}
+</form>
+  
+{% endblock %}
