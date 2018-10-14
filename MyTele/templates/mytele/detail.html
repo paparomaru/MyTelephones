@@ -1,9 +1,9 @@
-{% extends "address_book/base.html" %}
+{% extends "mytele/base.html" %}
 
 {% block title %}Entry detail{% endblock %}
 
 {% block content %}
-<a href="{% url address_book.views.index %}">Back to the homepage</a>
+<a href="{% url 'index'  %}">Back to the homepage</a>
 <hr/>
 
 {% if error %}
@@ -17,7 +17,7 @@
   Name: <strong>{{ entry.name }}</strong><br/>
   Surame: <strong>{{ entry.surname }}</strong><br/>
   Telephone: <strong>{{ entry.telephone }}</strong><br/>
-  (<a href="{% url address_book.views.edit_existing entry_id=entry.id %}">Edit this entry</a>)
+  (<a href="{% url 'edit_existing' entry_id=entry.id %}">Edit this entry</a>)
 {% endif %}
 
 {% endblock %}
