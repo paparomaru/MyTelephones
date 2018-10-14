@@ -1,0 +1,14 @@
+{% extends "mytele/base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+    <div style="text-align:center">
+        Search entries (<i>insert name or telephone number</i>):
+        <form method="post" action="{% url 'search' %}">
+            <input type="text" name="keyword"/> <input type="submit" value="search"/>
+            {% csrf_token %}
+        </form>
+        <a href="{% url 'edit' %}">Add your entry</a>
+    </div>
+{% endblock %}

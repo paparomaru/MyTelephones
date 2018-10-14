@@ -1,14 +1,14 @@
-{% extends "address_book/base.html" %}
+{% extends "mytele/base.html" %}
 
 {% block title %}Search results{% endblock %}
 
 {% block content %}
 Search entries (<i>insert name or telephone number</i>):
-<form method="post" action="{% url address_book.views.search %}">
+<form method="post" action="{% url 'search' %}">
   <input type="text" name="keyword" /> <input type="submit" value="search" />
   {% csrf_token %}
 </form>
-<a href="{% url address_book.views.edit %}">Add your entry</a>
+<a href="{% url 'edit' %}">Add your entry</a>
 <hr/>
 
 {% if keyword %}
@@ -18,8 +18,8 @@ Search entries (<i>insert name or telephone number</i>):
     {% for result in search_result %}
     <li>
       Name: {{ result.name }}, Surname: {{ result.surname }}, Telephone: {{ result.telephone }}
-      (<a href="{% url address_book.views.detail result.id %}">View detail</a> |
-       <a href="{% url address_book.views.edit_existing entry_id=result.id %}">Edit this entry</a>)
+      (<a href="{% url 'detail' result.id %}">View detail</a> |
+       <a href="{% url 'edit_existing' entry_id=result.id %}">Edit this entry</a>)
     </li>
     {% endfor %}
   </ul>

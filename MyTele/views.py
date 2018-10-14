@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.context_processors import csrf
 from django.db.models import Q
@@ -9,7 +10,8 @@ from MyTele.forms import AddressbookEntryForm
 def index(request):
     c = {}
     c.update(csrf(request))
-    return render(request, 'address_book/index.html', c)
+    # return HttpResponse('Hello world!')
+    return render(request, 'mytele/index.html', c)
 
 
 def search(request):
@@ -23,7 +25,7 @@ def search(request):
             | Q(surname__icontains=c['keyword'])
             | Q(telephone__contains=c['keyword']))
 
-    return render(request, 'address_book/search.html', c)
+    return render(request, 'mytele/search.html', c)
 
 
 def detail(request, entry_id=None):
@@ -33,7 +35,7 @@ def detail(request, entry_id=None):
     except ObjectDoesNotExist:
         c['error'] = u'Address entry not exists'
 
-    return render(request, 'address_book/detail.html', c)
+    return render(request, 'mytele/detail.html', c)
 
 
 def edit(request, entry_id=None):
@@ -61,7 +63,7 @@ def edit(request, entry_id=None):
 
             c['message'] = "Address book entry saved."
 
-            return render(request, 'address_book/detail.html', c)
+            return render(request, 'mytele/detail.html', c)
     else:
         # Showing the form to add or update
         # an address entry
@@ -78,4 +80,4 @@ def edit(request, entry_id=None):
                 'telephone': entry.telephone,
             })
 
-    return render(request, 'address_book/edit.html', c)
+    return render(request, 'mytele/edit.html', c)

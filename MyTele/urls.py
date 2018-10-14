@@ -1,4 +1,4 @@
-from django.urls import re_path
+from django.urls import re_path, path
 from MyTele.views import index, detail, search, edit
 
 urlpatterns = [
@@ -6,5 +6,5 @@ urlpatterns = [
     re_path(r'^detail/(?P<entry_id>\d+)/$', detail, name='detail'),
     re_path(r'^search/$', search, name='search'),
     re_path(r'^edit/$', edit, name='edit'),
-    re_path('', index, 'index', name='index'),
+    path('', index, name='index'),
 ]
