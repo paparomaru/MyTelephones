@@ -1,7 +1,7 @@
 from django import forms
 
 
-class AddressbookEntryForm(forms.Form):
+class AddressBookEntryForm(forms.Form):
     pk = forms.CharField(widget=forms.HiddenInput, required=False)
     name = forms.CharField(max_length=100)
     surname = forms.CharField(max_length=100)

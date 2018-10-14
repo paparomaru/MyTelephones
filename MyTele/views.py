@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.context_processors import csrf
 from django.db.models import Q
-from MyTele.models import AddressbookEntry
-from MyTele.forms import AddressbookEntryForm
+from MyTele.models import AddressBookEntry
+from MyTele.forms import AddressBookEntryForm
 
 
 def index(request):
@@ -20,7 +20,7 @@ def search(request):
 
     c['keyword'] = request.POST.get('keyword', False)
     if c['keyword'] is not False:
-        c['search_result'] = AddressbookEntry.objects.filter(
+        c['search_result'] = AddressBookEntry.objects.filter(
             Q(name__icontains=c['keyword'])
             | Q(surname__icontains=c['keyword'])
             | Q(telephone__contains=c['keyword']))
@@ -31,7 +31,7 @@ def search(request):
 def detail(request, entry_id=None):
     c = {'error': False}
     try:
-        c['entry'] = AddressbookEntry.objects.get(pk=entry_id)
+        c['entry'] = AddressBookEntry.objects.get(pk=entry_id)
     except ObjectDoesNotExist:
         c['error'] = u'Address entry not exists'
 
@@ -44,16 +44,16 @@ def edit(request, entry_id=None):
 
     if request.method == 'POST':
         # Form validation
-        c['form'] = AddressbookEntryForm(request.POST)
+        c['form'] = AddressBookEntryForm(request.POST)
         if c['form'].is_valid():
             cd = c['form'].cleaned_data
             # Check whether to add or modify the address entry
             c['entry'] = None
             try:
-                c['entry'] = AddressbookEntry.objects.get(pk=int(cd['pk']))
+                c['entry'] = AddressBookEntry.objects.get(pk=int(cd['pk']))
             except:
                 # pk is null or object does not exist
-                c['entry'] = AddressbookEntry()
+                c['entry'] = AddressBookEntry()
 
             # Fill data
             c['entry'].name = cd['name']
@@ -68,12 +68,12 @@ def edit(request, entry_id=None):
         # Showing the form to add or update
         # an address entry
         try:
-            entry = AddressbookEntry.objects.get(pk=entry_id)
+            entry = AddressBookEntry.objects.get(pk=entry_id)
         except:
-            c['form'] = AddressbookEntryForm()
+            c['form'] = AddressBookEntryForm()
         else:
             # Fill the form with database information
-            c['form'] = AddressbookEntryForm(initial={
+            c['form'] = AddressBookEntryForm(initial={
                 'pk': entry_id,
                 'name': entry.name,
                 'surname': entry.surname,
