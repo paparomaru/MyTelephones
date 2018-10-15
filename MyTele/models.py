@@ -10,4 +10,3 @@ class AddressBookEntry(models.Model):
         return u'{0} {1} ({2})'.format(self.name,
                                        self.surname,
                                        self.telephone)
-# комменты

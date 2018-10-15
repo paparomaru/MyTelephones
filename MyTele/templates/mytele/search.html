@@ -3,28 +3,28 @@
 {% block title %}Search results{% endblock %}
 
 {% block content %}
-Search entries (<i>insert name or telephone number</i>):
+Поиск (<i>введите имя или телефонныйномер</i>):
 <form method="post" action="{% url 'search' %}">
-  <input type="text" name="keyword" /> <input type="submit" value="search" />
+  <input type="text" name="keyword" /> <input type="submit" value="Найти" />
   {% csrf_token %}
 </form>
-<a href="{% url 'edit' %}">Add your entry</a>
+<a href="{% url 'edit' %}">Добавить запись</a>
 <hr/>
 
 {% if keyword %}
-  Search results for keyword: <strong>{{ keyword }}</strong>
+  Результат поиска: <strong>{{ keyword }}</strong>
   <br/>
   <ul>
     {% for result in search_result %}
     <li>
-      Name: {{ result.name }}, Surname: {{ result.surname }}, Telephone: {{ result.telephone }}
-      (<a href="{% url 'detail' result.id %}">View detail</a> |
-       <a href="{% url 'edit_existing' entry_id=result.id %}">Edit this entry</a>)
+      Имя: {{ result.name }}, Фамилия: {{ result.surname }}, Телефонный номер: {{ result.telephone }}
+      (<a href="{% url 'detail' result.id %}">Детали</a> |
+       <a href="{% url 'edit_existing' entry_id=result.id %}">Редактировать запись</a>)
     </li>
     {% endfor %}
   </ul>
 {% else %}
-  No keyword submitted.
+  Ничего не найдено по введеному запросу.
 {% endif %}
 
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}Entry detail{% endblock %}
 
 {% block content %}
-<a href="{% url 'index'  %}">Back to the homepage</a>
+<a href="{% url 'index'  %}">Вернуться</a>
 <hr/>
 
 {% if error %}
@@ -14,10 +14,10 @@
     {{ message }}
   </p>
   {% endif %}
-  Name: <strong>{{ entry.name }}</strong><br/>
-  Surame: <strong>{{ entry.surname }}</strong><br/>
-  Telephone: <strong>{{ entry.telephone }}</strong><br/>
-  (<a href="{% url 'edit_existing' entry_id=entry.id %}">Edit this entry</a>)
+  Имя: <strong>{{ entry.name }}</strong><br/>
+  Фамилия: <strong>{{ entry.surname }}</strong><br/>
+  Номер телефона: <strong>{{ entry.telephone }}</strong><br/>
+  (<a href="{% url 'edit_existing' entry_id=entry.id %}">Редактировать запись</a>)
 {% endif %}
 
 {% endblock %}

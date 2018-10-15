@@ -1,14 +1,14 @@
 {% extends "mytele/base.html" %}
 
-{% block title %}Homepage{% endblock %}
+{% block title %}Телефонная книга{% endblock %}
 
 {% block content %}
     <div style="text-align:center">
-        Search entries (<i>insert name or telephone number</i>):
+        Поиск (<i>введите имя или телефонный номер</i>):
         <form method="post" action="{% url 'search' %}">
-            <input type="text" name="keyword"/> <input type="submit" value="search"/>
+            <input type="text" name="keyword"/> <input type="submit" value="Найти"/>
             {% csrf_token %}
         </form>
-        <a href="{% url 'edit' %}">Add your entry</a>
+        <a href="{% url 'edit' %}">Добавить запись</a>
     </div>
 {% endblock %}

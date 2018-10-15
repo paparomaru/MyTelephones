@@ -1,11 +1,11 @@
 {% extends "mytele/base.html" %}
 
-{% block title %}Add or Edit an Entry{% endblock %}
+{% block title %}Добавить или редактировать запись{% endblock %}
 
 {% block content %}
-<a href="{% url 'index' %}">Back to the homepage</a>
+<a href="{% url 'index' %}">Вернуться</a>
 <hr/>
-<h1>Add or edit an Address Entry</h1>
+<h1>Добавить или редактировать запись</h1>
 
 {% if form.errors %}
 <p style="color: red;">
@@ -17,7 +17,7 @@
   <table style="text-align:left">
     {{ form.as_table }}
   </table>
-  <input type="submit" value="save" />
+  <input type="submit" value="Сохранить" />
   {% csrf_token %}
 </form>
   
