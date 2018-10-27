@@ -1,9 +1,9 @@
 {% extends "mytele/base.html" %}
 
-{% block title %}Телефонная книга{% endblock %}
+{% block title %}Список телефонов{% endblock %}
 
 {% block content %}
-    <div style="text-align:center">
+    <div class="title">
         Поиск (<i>введите имя или телефонный номер</i>):
         <form method="post" action="{% url 'search' %}">
             <input type="text" name="keyword"/> <input type="submit" value="Найти"/>
