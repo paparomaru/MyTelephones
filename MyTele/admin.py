@@ -1,3 +1,6 @@
 from django.contrib import admin
+from MyTele.models import AddressBookEntry
 
-# Register your models here.
+admin.site.register(AddressBookEntry)
+
+#dsfsdfdf
