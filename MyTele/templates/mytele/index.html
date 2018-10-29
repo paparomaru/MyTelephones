@@ -4,44 +4,64 @@
 
 {% block content %}
 
-    <div class="container">
-        <hr/>
-        Поиск (<i>введите имя или телефонный номер</i>):
-        <form method="post" action="{% url 'search' %}">
-            <input type="text" name="keyword"/> <input type="submit" value="Найти"/>
-            {% csrf_token %}
-        </form>
-        <a href="{% url 'edit' %}">Добавить запись</a>
-        <hr/>
-        <br>
-        <br>
-    </div>
+{#    <div class="container">#}
+{#        <hr/>#}
+{#        Поиск (<i>введите имя или телефонный номер</i>):#}
+{#        <form method="post" action="{% url 'search' %}">#}
+{#            <input type="text" name="keyword"/> <input type="submit" value="Найти"/>#}
+{#            {% csrf_token %}#}
+{#        </form>#}
+{#        <a href="{% url 'edit' %}">Добавить запись</a>#}
+{#        <hr/>#}
+{#        <br>#}
+{#        <br>#}
+{#    </div>#}
 
     <div class="container">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">ТЕЛЕФОН</th>
-                <th scope="col">ИМЯ</th>
-                <th scope="col">E-MAIL</th>
-                <th scope="col">Просмотр информации</th>
-                <th scope="col">Редкатировать запись</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="row">
+            <div class="col-4 item">
+                <a href="{% url 'edit' %}" class="btn btn-success">Добавить запись</a>
+            </div>
+            <div class="col-4 item"></div>
+            <div class="col-4 item">
+                <form method="post" action="{% url 'search' %}" class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Введите текст..."
+                           aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                    {% csrf_token %}
+                </form>
+            </div>
+            <br>
+            <br>
+        </div>
 
-            {% for record in tel_all_records %}
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <td>{{ record.telephone }}</td>
-                    <td>{{ record.name }}</td>
-                    <td>{{ record.email }}</td>
-                    <td><a href="{% url 'detail' record.id %}" class="btn btn-success">Детали</a></td>
-                    <td><a href="{% url 'edit_existing' entry_id=record.id %}" class="btn btn-warning">Редактировать</a>.</td>
+                    <th scope="col">ТЕЛЕФОН</th>
+                    <th scope="col">ИМЯ</th>
+                    <th scope="col">E-MAIL</th>
+                    <th scope="col">Просмотр информации</th>
+                    <th scope="col">Редкатировать запись</th>
                 </tr>
-            {% endfor %}
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
-    </div>
+                {% for record in tel_all_records %}
+                    <tr>
+                        <td>{{ record.telephone }}</td>
+                        <td>{{ record.name }}</td>
+                        <td>{{ record.email }}</td>
+                        <td><a href="{% url 'detail' record.id %}" class="btn btn-success">Детали</a></td>
+                        <td><a href="{% url 'edit_existing' entry_id=record.id %}"
+                               class="btn btn-warning">Редактировать</a>.
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
 
 {% endblock %}

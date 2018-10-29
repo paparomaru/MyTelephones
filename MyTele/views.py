@@ -24,7 +24,8 @@ def search(request):
         c['search_result'] = AddressBookEntry.objects.filter(
             Q(name__icontains=c['keyword'])
             | Q(surname__icontains=c['keyword'])
-            | Q(telephone__contains=c['keyword']))
+            | Q(telephone__contains=c['keyword'])
+            | Q(email__contains=c['keyword']))
 
     return render(request, 'mytele/search.html', c)
 
