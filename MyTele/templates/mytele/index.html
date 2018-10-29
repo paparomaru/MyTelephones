@@ -3,12 +3,45 @@
 {% block title %}Список телефонов{% endblock %}
 
 {% block content %}
-    <div class="title">
+
+    <div class="container">
+        <hr/>
         Поиск (<i>введите имя или телефонный номер</i>):
         <form method="post" action="{% url 'search' %}">
             <input type="text" name="keyword"/> <input type="submit" value="Найти"/>
             {% csrf_token %}
         </form>
         <a href="{% url 'edit' %}">Добавить запись</a>
+        <hr/>
+        <br>
+        <br>
     </div>
+
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ТЕЛЕФОН</th>
+                <th scope="col">ИМЯ</th>
+                <th scope="col">E-MAIL</th>
+                <th scope="col">Просмотр информации</th>
+                <th scope="col">Редкатировать запись</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for record in tel_all_records %}
+                <tr>
+                    <td>{{ record.telephone }}</td>
+                    <td>{{ record.name }}</td>
+                    <td>{{ record.email }}</td>
+                    <td><a href="{% url 'detail' record.id %}" class="btn btn-success">Детали</a></td>
+                    <td><a href="{% url 'edit_existing' entry_id=record.id %}" class="btn btn-warning">Редактировать</a>.</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}

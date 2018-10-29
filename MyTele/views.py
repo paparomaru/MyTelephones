@@ -1,5 +1,4 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.context_processors import csrf
 from django.db.models import Q
@@ -8,10 +7,12 @@ from MyTele.forms import AddressBookEntryForm
 
 
 def index(request):
+    template_name = 'mytele/index.html'
     c = {}
     c.update(csrf(request))
-    # return HttpResponse('Hello world!')
-    return render(request, 'mytele/index.html', c)
+    c['tel_all_records'] = AddressBookEntry.objects.all()
+
+    return render(request, template_name, c)
 
 
 def search(request):
