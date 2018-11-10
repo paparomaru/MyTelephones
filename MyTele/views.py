@@ -10,7 +10,7 @@ def index(request):
     template_name = 'mytele/index.html'
     c = {}
     c.update(csrf(request))
-    c['tel_all_records'] = AddressBookEntry.objects.all()
+    c['tel_all_records'] = AddressBookEntry.objects.all()[0:4]
 
     return render(request, template_name, c)
 

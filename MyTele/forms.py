@@ -9,6 +9,6 @@ class AddressBookEntryForm(forms.Form):
         regex=r'^\+[0-9]{2}\s[0-9]+\s[0-9]{5,}$',
         max_length=20,
         error_messages={
-            'invalid': u'Telephone number specified is not correct. It must be of the form: +XX XXXX XXXXXX'
+            'invalid': u'Telephone number specified is not correct. It must be of the format: +XX XXXX XXXXXX'
         },
         label='Telephone number')
