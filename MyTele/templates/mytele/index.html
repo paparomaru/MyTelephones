@@ -2,28 +2,25 @@
 
 {% block title %}Список телефонов{% endblock %}
 
-{% block content %}
+{% block leftcontent %}
+    <div>
+        <ul class="prokrutka">
+            {% for i in "xxxxxxxxxxxxxxxxxxxx" %}
+                <li>{{ 'Петька ' }}{{ forloop.counter0 }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
 
-    {#    <div class="container">#}
-    {#        <hr/>#}
-    {#        Поиск (<i>введите имя или телефонный номер</i>):#}
-    {#        <form method="post" action="{% url 'search' %}">#}
-    {#            <input type="text" name="keyword"/> <input type="submit" value="Найти"/>#}
-    {#            {% csrf_token %}#}
-    {#        </form>#}
-    {#        <a href="{% url 'edit' %}">Добавить запись</a>#}
-    {#        <hr/>#}
-    {#        <br>#}
-    {#        <br>#}
-    {#    </div>#}
+{% block content %}
 
     <div class="container">
         <div class="row">
             <div class="col-4 item">
                 <a href="{% url 'edit' %}" class="btn btn-outline-success my-2 my-sm-0">Добавить запись</a>
             </div>
-            <div class="col-4 item"></div>
-            <div class="col-4 item">
+            <div class="col-3 item"></div>
+            <div class="col-5 item">
                 <form method="post" action="{% url 'search' %}" class="form-inline mt-2 mt-md-0">
                     <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Введите текст..."
                            aria-label="Search">
@@ -49,20 +46,20 @@
             <tbody>
 
             {% for record in tel_all_records %}
-                <tr>
-                    <td><a href="{% url 'detail' record.id %}"
-                           class="btn btn-outline-success my-2 my-sm-0">Детали</a></td>
-                    <td>{{ record.telephone }}</td>
-                    <td>{{ record.name }}</td>
-                    <td>{{ record.email }}</td>
-                    <td><a href="{% url 'edit_existing' entry_id=record.id %}"
-                           class="btn btn-outline-warning my-2 my-sm-0">Редактировать</a>
-                    </td>
+                <tr> <!--class="prokrutka"-->
+                <td><a href="{% url 'detail' record.id %}"
+                       class="btn btn-outline-success my-2 my-sm-0">Детали</a></td>
+                <td>{{ record.telephone }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.email }}</td>
+                <td><a href="{% url 'edit_existing' entry_id=record.id %}"
+                       class="btn btn-outline-warning my-2 my-sm-0">Редактировать</a>
+                </td>
                 </tr>
             {% endfor %}
 
             </tbody>
-        </table>
+    </table>
 
     </div>
 
